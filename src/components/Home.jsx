@@ -1,20 +1,35 @@
 import React, { useState } from 'react'
 import data from '../data/products.json'
+import Card from 'react-bootstrap/Card';
+
 
 const Home = () => {
 
   const [items, setItems] = useState(data);
-  console.log(data)
+
+
+  const filterOutofStock = (cateItem) => {
+    const updatedItems = data.filter((variants) => {
+      return variants.inventory_quantity == cateItem;
+
+    });
+    console.log(cateItem)
+    console.log(updatedItems)
+    setItems(updatedItems);
+
+  }
+
+
   return (
     <>
       <h1 className='mt-5 text-centre main-heading'>Glass Beads</h1>
       <hr />
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
-          <button className='btn btn-warning'>Filter 1</button>
-          <button className='btn btn-warning'>Filter 2</button>
+        <button className='btn btn-warning' onClick={() => setItems(data)}>Display all</button>
+          <button className='btn btn-warning' onClick={() => filterOutofStock('0')}> include Out Of Stock</button>
           <button className='btn btn-warning'>Filter 3</button>
-          <button className='btn btn-warning'>Filter 4</button>
+          
         </div>
       </div>
       {/* my main item section */}
@@ -26,30 +41,24 @@ const Home = () => {
               {items.map((elem) => {
                 const { id, title, image, variants } = elem;
                 return (
-                        <div className='item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5'>
+                  <div className='item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5' key={id}>
 
-                          <div className='row Item-inside'>
-                            {/* for image */}
-                            <div className='col-12 col-md-12 col-lg-4 img-div'>
-                              <img src={image.src} alt='menuPic' className='img-fluid'></img>
+                    <Card style={{ width: '17rem' }}>
+                    <Card.Header as="h5">Sale</Card.Header>
+                      <Card.Img variant="top" src={image.src} />
+                      <Card.Body>
+                        <Card.Title>{title}</Card.Title>
+                        
+                         {elem.variants.map(variants => {
+                          const { id,price } = variants;
+                          return(<Card.Text key={id}>{price}</Card.Text>)
+                          
+                        })}
 
-                            </div>
-                            {/* my main item section */}
-                            <div className='col-12 col-md-12 col-lg-8'>
-                              <div className='main-title pt-4 pb-3'>
-                                <h1>
-                                  {title}
-                                </h1>
-                                
-                              </div>
-                              <div className='menu-price-book'>
-                                <div className='price-book-divine d-flex justify-content-between'>
-                                  <h2>price-</h2>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      </Card.Body>
+                    </Card>
+                  </div>
+
                 )
               })}
 
