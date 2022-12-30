@@ -10,7 +10,7 @@ const Home = () => {
 
   const filterOutofStock = (cateItem) => {
     const updatedItems = data.filter((variants) => {
-      return variants.inventory_quantity == cateItem;
+      return variants.inventory_quantity === cateItem;
 
     });
     console.log(cateItem)
@@ -18,6 +18,8 @@ const Home = () => {
     setItems(updatedItems);
 
   }
+  //attemp 1
+ 
 
 
   return (
@@ -28,7 +30,7 @@ const Home = () => {
         <div className='menu-tab d-flex justify-content-around'>
         <button className='btn btn-warning' onClick={() => setItems(data)}>Display all</button>
           <button className='btn btn-warning' onClick={() => filterOutofStock('0')}> include Out Of Stock</button>
-          <button className='btn btn-warning'>Filter 3</button>
+          <button className='btn btn-warning'>Red</button>
           
         </div>
       </div>
