@@ -9,17 +9,40 @@ const Home = () => {
 
 
   const filterOutofStock = (cateItem) => {
-    const updatedItems = data.filter((variants) => {
+    const updatedItems = data.filter((elem, variants) => {
       return variants.inventory_quantity === cateItem;
 
     });
-    console.log(cateItem)
+
     console.log(updatedItems)
     setItems(updatedItems);
 
+
   }
   //attemp 1
- 
+
+  const filterOutofStock1 = (cateItem) => {
+    let updatedItems;
+    data.map((elem) => {
+      const { variants } = elem;
+      
+      console.log(variants)
+       updatedItems = variants.filter((elem) => {
+        console.log(elem.inventory_quantity)
+        return elem.inventory_quantity === cateItem;
+
+
+      });
+      console.log("1")
+     
+
+    })
+
+    setItems(updatedItems);
+    //
+
+  }
+
 
 
   return (
@@ -28,10 +51,10 @@ const Home = () => {
       <hr />
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
-        <button className='btn btn-warning' onClick={() => setItems(data)}>Display all</button>
-          <button className='btn btn-warning' onClick={() => filterOutofStock('0')}> include Out Of Stock</button>
+          <button className='btn btn-warning' onClick={() => setItems(data)}>Display all</button>
+          <button className='btn btn-warning' onClick={() => filterOutofStock1('0')}> include Out Of Stock</button>
           <button className='btn btn-warning'>Red</button>
-          
+
         </div>
       </div>
       {/* my main item section */}
@@ -46,15 +69,15 @@ const Home = () => {
                   <div className='item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5' key={id}>
 
                     <Card style={{ width: '17rem' }}>
-                    <Card.Header as="h5">Sale</Card.Header>
+                      <Card.Header as="h5">Sale</Card.Header>
                       <Card.Img variant="top" src={image.src} />
                       <Card.Body>
                         <Card.Title>{title}</Card.Title>
-                        
-                         {elem.variants.map(variants => {
-                          const { id,price } = variants;
-                          return(<Card.Text key={id}>{price}</Card.Text>)
-                          
+
+                        {elem.variants.map(variants => {
+                          const { id, price } = variants;
+                          return (<Card.Text key={id}>{price}</Card.Text>)
+
                         })}
 
                       </Card.Body>
