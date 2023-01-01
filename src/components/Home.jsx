@@ -22,23 +22,23 @@ const Home = () => {
   //attemp 1
 
   const filterOutofStock1 = (cateItem) => {
-    let updatedItems;
+    
     data.map((elem) => {
       const { variants } = elem;
       
-      console.log(variants)
-       updatedItems = variants.filter((elem) => {
+      
+       const updatedItems = variants.filter((elem) => {
         console.log(elem.inventory_quantity)
         return elem.inventory_quantity === cateItem;
 
 
       });
-      console.log("1")
-     
+      console.log(updatedItems)
+      setItems(updatedItems);
 
     })
 
-    setItems(updatedItems);
+    
     //
 
   }
