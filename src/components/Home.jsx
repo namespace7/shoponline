@@ -8,39 +8,36 @@ const Home = () => {
   const [items, setItems] = useState(data);
 
 
-  const filterOutofStock = (cateItem) => {
-    const updatedItems = data.filter((elem, variants) => {
-      return variants.inventory_quantity === cateItem;
 
-    });
+  //attemp 1
+  const filterOutofStock1 = () => {
 
-    console.log(updatedItems)
-    setItems(updatedItems);
-
+    const filterItem = data.map(
+      (data) =>
+        data.variants.filter((elem) => {
+          return elem.inventory_quantity === 0
+        })
+    );
+    console.log(filterItem);
+    setItems(filterItem);
 
   }
-  //attemp 1
+  //attemp 2
 
-  const filterOutofStock1 = (cateItem) => {
-    
+  const filterOutofStock = () => {
+    let updatedItems;
     data.map((elem) => {
       const { variants } = elem;
-      
-      
-       const updatedItems = variants.filter((elem) => {
-        console.log(elem.inventory_quantity)
-        return elem.inventory_quantity === cateItem;
 
-
-      });
-      console.log(updatedItems)
-      setItems(updatedItems);
-
+      return (
+        updatedItems = variants.filter((elem) => {
+          console.log(elem.inventory_quantity)
+          return console.log(elem.inventory_quantity === 0)
+        })
+      )
     })
-
-    
-    //
-
+    console.log(updatedItems)
+    setItems(updatedItems);
   }
 
 
@@ -52,7 +49,7 @@ const Home = () => {
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
           <button className='btn btn-warning' onClick={() => setItems(data)}>Display all</button>
-          <button className='btn btn-warning' onClick={() => filterOutofStock1('0')}> include Out Of Stock</button>
+          <button className='btn btn-warning' onClick={() => filterOutofStock1()}> include Out Of Stock</button>
           <button className='btn btn-warning'>Red</button>
 
         </div>
