@@ -87,7 +87,7 @@ const Home = () => {
 
           <button className='btn btn-warning'>Red</button>
 
-          <button onClick={myFunction}>Show Out Of Stock item</button>
+          <button onClick={myFunction}>{show > 0 ? 'remove Out of Stock' : 'include out of stock' }</button>
 
 
         </div>
@@ -97,8 +97,6 @@ const Home = () => {
         <div className='row'>
           <div className='col-11 mx-auto'>
             <div className='row my-5'>
-
-
               {items.map((elem) => {
                 const { id, title, image, variants } = elem;
                 return (
@@ -124,10 +122,10 @@ const Home = () => {
               })}
 
               {show
-                ? <div> {itemsoutofstock.map((elem) => {
+                ? <div className='row my-5 col-11 mx-auto'> {itemsoutofstock.map((elem) => {
                 const { id, title, image, variants } = elem;
                 return (
-                  <div className='item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5' key={id}>
+                  <div className='item2 col-12 col-md-6 col-lg-6 col-xl-4 my-5' key={id}>
 
                     <Card style={{ width: '17rem' }}>
                       <Card.Header as="h5">Out of stock</Card.Header>
