@@ -21,14 +21,6 @@ function shuffle(arra1) {
 const Home = () => {
 
   const [itemsoutofstock, setItemoutofstock] = useState('');
-  const [blackProductitem, setBlackProductitem] = useState('');
-  const [greenProductitem, setGreenProductitem] = useState('');
-  const [blueProductitem, setBlueProductitem] = useState('');
-  const [whiteProductitem, setWhiteProductitem] = useState('');
-  const [pinkProductitem, setPinkProductitem] = useState('');
-  const [yellowProductitem, setYellowProductitem] = useState('');
-  const [orangeProductitem, setOrangeProductitem] = useState('');
-  const [purpleProductitem, setPurpleProductitem] = useState('');
   const [items, setItems] = useState(data);
   
   const [show, setShow] = useState(false);
@@ -39,16 +31,14 @@ const Home = () => {
     const blueProduct = data.filter(l => {
       return l.title.toLowerCase().match('blue');
     });
-    console.log(blueProduct)
+    //console.log(blueProduct)
     const blueArray = shuffle(blueProduct);
-    setBlueProductitem(blueArray);
 
     const blackProduct = data.filter(l => {
       return l.title.toLowerCase().match('black');
     });
-    console.log(blackProduct)
+    //console.log(blackProduct)
     const blackArray = shuffle(blackProduct);
-    setBlackProductitem(blackArray)
 
     const greenProduct = data.filter(l => {
       return l.title.toLowerCase().match('green');
@@ -56,44 +46,37 @@ const Home = () => {
 
     const greenArray = shuffle(greenProduct);
     //console.log(greenArray);
-    setGreenProductitem(greenArray);
 
     const whiteProduct = data.filter(l => {
       return l.title.toLowerCase().match('white');
     });
     // console.log(whiteProduct)
     const whiteArray = shuffle(whiteProduct);
-    setWhiteProductitem(whiteArray);
 
     const yellowProduct = data.filter(l => {
       return l.title.toLowerCase().match('yellow');
     });
     //console.log(yellowProduct)
     const yellowArray = shuffle(yellowProduct);
-    setYellowProductitem(yellowArray);
 
     const pinkProduct = data.filter(l => {
       return l.title.toLowerCase().match('pink');
     });
     //console.log(pinkProduct)
     const pinkArray = shuffle(pinkProduct);
-    setPinkProductitem(pinkArray);
 
     const orangeProduct = data.filter(l => {
       return l.title.toLowerCase().match('orange');
     });
     //console.log(orangeProduct)
     const orangeArray = shuffle(orangeProduct);
-    setOrangeProductitem(orangeArray);
 
     const purpleProduct = data.filter(l => {
       return l.title.toLowerCase().match('purple');
     });
-    console.log(purpleProduct)
+    //console.log(purpleProduct)
     const purpleArray = shuffle(purpleProduct);
-    setPurpleProductitem(purpleArray);
-    var products = ([...purpleProductitem, ...greenProductitem, ...blueProductitem, ...blackProductitem, ...yellowProductitem, ...pinkProductitem, ...orangeProductitem, ...whiteProductitem]);
-    console.log(products);
+
     setItems(items => [...purpleArray, ...greenArray, ...blueArray, ...blackArray, ...yellowArray, ...pinkArray, ...orangeArray, ...whiteArray]);
     
   }
