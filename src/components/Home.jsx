@@ -39,14 +39,14 @@ const Home = () => {
     const blueProduct = data.filter(l => {
       return l.title.toLowerCase().match('blue');
     });
-    //console.log(blueProduct)
+    console.log(blueProduct)
     const blueArray = shuffle(blueProduct);
     setBlueProductitem(blueArray);
 
     const blackProduct = data.filter(l => {
       return l.title.toLowerCase().match('black');
     });
-    // console.log(blackProduct)
+    console.log(blackProduct)
     const blackArray = shuffle(blackProduct);
     setBlackProductitem(blackArray)
 
@@ -89,12 +89,12 @@ const Home = () => {
     const purpleProduct = data.filter(l => {
       return l.title.toLowerCase().match('purple');
     });
-    //console.log(purpleProduct)
+    console.log(purpleProduct)
     const purpleArray = shuffle(purpleProduct);
     setPurpleProductitem(purpleArray);
     var products = ([...purpleProductitem, ...greenProductitem, ...blueProductitem, ...blackProductitem, ...yellowProductitem, ...pinkProductitem, ...orangeProductitem, ...whiteProductitem]);
     console.log(products);
-    setItems(products);
+    setItems(items => [...purpleArray, ...greenArray, ...blueArray, ...blackArray, ...yellowArray, ...pinkArray, ...orangeArray, ...whiteArray]);
     
   }
 
