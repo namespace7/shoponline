@@ -2,62 +2,65 @@ import React, { useState, useEffect } from 'react'
 import data from '../data/products.json'
 import Card from 'react-bootstrap/Card';
 
-const myArray = [
-  { name: "cat", count: 0 },
-  { name: "dog", count: 0 },
-  { name: "hamster", count: 0 },
-  { name: "lizard", count: 0 }
-];
+
 
 function shuffle(arra1) {
   var ctr = arra1.length,
-    temp,
-    index;
+      temp,
+      index;
   while (ctr > 0) {
-    index = Math.floor(Math.random() * ctr);
-    ctr--;
-    temp = arra1[ctr];
-    arra1[ctr] = arra1[index];
-    arra1[index] = temp;
+      index = Math.floor(Math.random() * ctr);
+      ctr--;
+      temp = arra1[ctr];
+      arra1[ctr] = arra1[index];
+      arra1[index] = temp;
   }
   return arra1;
 }
 
-
 const Home = () => {
 
+  const [itemsoutofstock, setItemoutofstock] = useState('');
+  const [blackProductitem, setBlackProductitem] = useState('');
+  const [greenProductitem, setGreenProductitem] = useState('');
+  const [blueProductitem, setBlueProductitem] = useState('');
+  const [whiteProductitem, setWhiteProductitem] = useState('');
+  const [pinkProductitem, setPinkProductitem] = useState('');
+  const [yellowProductitem, setYellowProductitem] = useState('');
+  const [orangeProductitem, setOrangeProductitem] = useState('');
+  const [purpleProductitem, setPurpleProductitem] = useState('');
   const [items, setItems] = useState(data);
-  const [itemsoutofstock, setItemoutofstock] = useState();
+  const [mount, setMount] = useState(false); // <-- loading state
   const [show, setShow] = useState(false);
-  let blueProduct, blackProduct, greenProduct, whiteProduct, yellowProduct, pinkProduct, orangeProduct, purpleProduct;
+
+
+
+
 
   useEffect(() => {
-    // arrange the porduct based on color 
 
-    //const mountArray = shuffle(myArray);
-    divideDataOnColor();
-  }, [])
-
+    if(!mount){
+      setMount(true);
+      divideDataOnColor();
+    }
+  }, [divideDataOnColor,mount]);
   const handleClick = () => {
     setShow(s => !s);
   };
 
-
   //attemp 3
 
   function myFunction1() {
-    const test2 = data
-      .map((data) => {
-        let details = data.variants.filter((detail) =>
-          detail.inventory_quantity === 0
-        );
-        if (!details.length) {
-          return null;
-        }
-        return { ...data, details };
-      })
+    const test2 = data.map((data) => {
+      let details = data.variants.filter((detail) =>
+        detail.inventory_quantity === 0
+      );
+      if (!details.length) {
+        return null;
+      }
+      return { ...data, details };
+    })
       .filter(Boolean);
-
     console.log("outOfStockData", test2);
     setItemoutofstock(test2);
   };
@@ -65,68 +68,83 @@ const Home = () => {
   function myFunction() {
     handleClick();
     myFunction1();
-
   }
 
 
+   function divideDataOnColor() {
 
-  function divideDataOnColor() {
-
-    blueProduct = data.filter(l => {
+    const blueProduct = data.filter(l => {
       return l.title.toLowerCase().match('blue');
     });
-    console.log(blueProduct)
+    //console.log(blueProduct)
+    const blueArray = shuffle(blueProduct);
+    setBlueProductitem(blueArray);
 
     const blackProduct = data.filter(l => {
       return l.title.toLowerCase().match('black');
     });
     // console.log(blackProduct)
+    const blackArray = shuffle(blackProduct);
+    setBlackProductitem(blackArray)
 
     const greenProduct = data.filter(l => {
       return l.title.toLowerCase().match('green');
     });
-    // console.log(greenProduct)
+
+    const greenArray = shuffle(greenProduct);
+    //console.log(greenArray);
+    setGreenProductitem(greenArray);
 
     const whiteProduct = data.filter(l => {
       return l.title.toLowerCase().match('white');
     });
     // console.log(whiteProduct)
+    const whiteArray = shuffle(whiteProduct);
+    setWhiteProductitem(whiteArray);
 
     const yellowProduct = data.filter(l => {
       return l.title.toLowerCase().match('yellow');
     });
     //console.log(yellowProduct)
+    const yellowArray = shuffle(yellowProduct);
+    setYellowProductitem(yellowArray);
 
     const pinkProduct = data.filter(l => {
       return l.title.toLowerCase().match('pink');
     });
     //console.log(pinkProduct)
+    const pinkArray = shuffle(pinkProduct);
+    setPinkProductitem(pinkArray);
 
     const orangeProduct = data.filter(l => {
       return l.title.toLowerCase().match('orange');
     });
     //console.log(orangeProduct)
+    const orangeArray = shuffle(orangeProduct);
+    setOrangeProductitem(orangeArray);
 
     const purpleProduct = data.filter(l => {
       return l.title.toLowerCase().match('purple');
     });
     //console.log(purpleProduct)
-
-    var products = [...blackProduct, ...greenProduct, ...blueProduct, ...whiteProduct, ...yellowProduct, ...pinkProduct, ...orangeProduct, ...purpleProduct];
-    //console.log(products);
+    const purpleArray = shuffle(purpleProduct);
+    setPurpleProductitem(purpleArray);
+    var products = ([...purpleProductitem, ...greenProductitem, ...blueProductitem, ...blackProductitem, ...yellowProductitem, ...pinkProductitem, ...orangeProductitem, ...whiteProductitem]);
+    console.log(products);
     setItems(products);
+    
   }
-  
+
 
   return (
-    <>
+
+    <div>
       <h1 className='mt-5 text-centre main-heading'>Glass Beads</h1>
       <hr />
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
 
 
-          <button >Suffle</button>
           <button onClick={myFunction}>{show > 0 ? 'remove Out of Stock' : 'include out of stock'}</button>
 
 
@@ -191,9 +209,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+    </div>
 
-
-    </>
   )
 }
 
