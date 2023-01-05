@@ -30,48 +30,11 @@ const Home = () => {
   const [orangeProductitem, setOrangeProductitem] = useState('');
   const [purpleProductitem, setPurpleProductitem] = useState('');
   const [items, setItems] = useState(data);
-  const [mount, setMount] = useState(false); // <-- loading state
+  
   const [show, setShow] = useState(false);
 
 
-
-
-
-  useEffect(() => {
-
-    if(!mount){
-      setMount(true);
-      divideDataOnColor();
-    }
-  }, [divideDataOnColor,mount]);
-  const handleClick = () => {
-    setShow(s => !s);
-  };
-
-  //attemp 3
-
-  function myFunction1() {
-    const test2 = data.map((data) => {
-      let details = data.variants.filter((detail) =>
-        detail.inventory_quantity === 0
-      );
-      if (!details.length) {
-        return null;
-      }
-      return { ...data, details };
-    })
-      .filter(Boolean);
-    console.log("outOfStockData", test2);
-    setItemoutofstock(test2);
-  };
-
-  function myFunction() {
-    handleClick();
-    myFunction1();
-  }
-
-
-   function divideDataOnColor() {
+  const divideDataOnColor = () => {
 
     const blueProduct = data.filter(l => {
       return l.title.toLowerCase().match('blue');
@@ -134,6 +97,45 @@ const Home = () => {
     setItems(products);
     
   }
+
+
+
+
+
+  useEffect(() => {
+
+   
+      divideDataOnColor();
+    
+  }, []);
+  const handleClick = () => {
+    setShow(s => !s);
+  };
+
+  //attemp 3
+
+  function myFunction1() {
+    const test2 = data.map((data) => {
+      let details = data.variants.filter((detail) =>
+        detail.inventory_quantity === 0
+      );
+      if (!details.length) {
+        return null;
+      }
+      return { ...data, details };
+    })
+      .filter(Boolean);
+    console.log("outOfStockData", test2);
+    setItemoutofstock(test2);
+  };
+
+  function myFunction() {
+    handleClick();
+    myFunction1();
+  }
+
+
+   
 
 
   return (
