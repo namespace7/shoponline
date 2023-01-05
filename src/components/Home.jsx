@@ -76,20 +76,12 @@ const Home = () => {
     });
     //console.log(purpleProduct)
     const purpleArray = shuffle(purpleProduct);
-
     setItems(items => [...purpleArray, ...greenArray, ...blueArray, ...blackArray, ...yellowArray, ...pinkArray, ...orangeArray, ...whiteArray]);
     
   }
-
-
-
-
-
   useEffect(() => {
 
-   
       divideDataOnColor();
-    
   }, []);
   const handleClick = () => {
     setShow(s => !s);
@@ -117,10 +109,6 @@ const Home = () => {
     myFunction1();
   }
 
-
-   
-
-
   return (
 
     <div>
@@ -128,11 +116,7 @@ const Home = () => {
       <hr />
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
-
-
           <button onClick={myFunction}>{show > 0 ? 'remove Out of Stock' : 'include out of stock'}</button>
-
-
         </div>
       </div>
       {/* my main item section */}
@@ -150,17 +134,13 @@ const Home = () => {
                       <Card.Img variant="top" src={image.src} />
                       <Card.Body>
                         <Card.Title>{title}</Card.Title>
-
                         {elem.variants.map(variants => {
                           const { id, price } = variants;
                           return (<Card.Text key={id}>{price}</Card.Text>)
-
                         })}
-
                       </Card.Body>
                     </Card>
                   </div>
-
                 )
               })}
 
@@ -169,23 +149,19 @@ const Home = () => {
                   const { id, title, image } = elem;
                   return (
                     <div className='item2 col-12 col-md-6 col-lg-6 col-xl-4 my-5' key={id}>
-
                       <Card style={{ width: '17rem' }}>
                         <Card.Header as="h5">Out of stock</Card.Header>
                         <Card.Img variant="top" src={image.src} />
                         <Card.Body>
                           <Card.Title>{title}</Card.Title>
-
                           {elem.variants.map(variants => {
                             const { id, price } = variants;
                             return (<Card.Text key={id}>{price}</Card.Text>)
 
                           })}
-
                         </Card.Body>
                       </Card>
                     </div>
-
                   )
                 })}</div>
                 : ''
