@@ -18,6 +18,8 @@ function shuffle(arra1) {
   return arra1;
 }
 
+ 
+
 const Home = () => {
 
   const [itemsoutofstock, setItemoutofstock] = useState('');
@@ -76,9 +78,12 @@ const Home = () => {
     });
     //console.log(purpleProduct)
     const purpleArray = shuffle(purpleProduct);
-    setItems(items => [...purpleArray, ...greenArray, ...blueArray, ...blackArray, ...yellowArray, ...pinkArray, ...orangeArray, ...whiteArray]);
+  
+    setItems(items => [...blueArray, ...greenArray, ...purpleArray, ...blackArray, ...yellowArray, ...pinkArray, ...orangeArray, ...whiteArray]);
     
   }
+
+  
   useEffect(() => {
 
       divideDataOnColor();
@@ -108,6 +113,7 @@ const Home = () => {
     handleClick();
     myFunction1();
   }
+  
 
   return (
 
