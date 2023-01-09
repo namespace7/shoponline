@@ -117,12 +117,10 @@ const Home = () => {
 
   return (
 
-    <div>
-      <h1 className='mt-5 text-centre main-heading'>Glass Beads</h1>
-      <hr />
+    <div className='gradient__bg'>
       <div className='menu-tabs container'>
         <div className='menu-tab d-flex justify-content-around'>
-          <button onClick={myFunction}>{show > 0 ? 'remove Out of Stock' : 'include out of stock'}</button>
+          <button className='button_outofStock' onClick={myFunction}>{show > 0 ? 'remove Out of Stock' : 'include out of stock'}</button>
         </div>
       </div>
       {/* my main item section */}
